@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.bmob.im.demo.ui.activity.FavoriteActivity">
+
+    <include
+        android:id="@+id/common_actionbar"
+        layout="@layout/include_action_bar"/>
+
+    <com.bmob.im.demo.view.xlist.XListView
+        android:id="@+id/fragment_favorite_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/common_actionbar"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@drawable/base_horizontal_line"
+        android:dividerHeight="1dp"
+        android:fadingEdgeLength="0dp"
+        android:fastScrollEnabled="true"
+        android:paddingBottom="10dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:indeterminateDrawable="@anim/loading"
+        />
+
+    <TextView
+        android:id="@+id/activity_favorite_networkTips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="请检查网络并下拉刷新"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:visibility="visible"
+        />
+</RelativeLayout>

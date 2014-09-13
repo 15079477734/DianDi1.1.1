@@ -1,0 +1,40 @@
+package com.bmob.im.demo.util;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+/**
+ * Created by sulinger  .
+ * date:14-9-13 .
+ * time:13:58 .
+ * project:DianDi1.1.0 .
+ * Copyright © sulinger .All Rights Reserved.
+ */
+@SuppressWarnings("no")
+public class SortList<E>{
+    public void Sort(List<E> list, final String method, final String sort){
+        Collections.sort(list, new Comparator() {
+            public int compare(Object a, Object b) {
+                int ret = 0;
+                try {
+                    Method m1 = ((E) a).getClass().getMethod(method, null);
+                    Method m2 = ((E) b).getClass().getMethod(method, null);
+                    if (sort != null && "desc".equals(sort))//倒序
+                        ret = m2.invoke(((E) b), null).toString().compareTo(m1.invoke(((E) a), null).toString());
+                    else//正序
+                        ret = m1.invoke(((E) a), null).toString().compareTo(m2.invoke(((E) b), null).toString());
+                } catch (NoSuchMethodException ne) {
+                    System.out.println(ne);
+                } catch (IllegalAccessException ie) {
+                    System.out.println(ie);
+                } catch (InvocationTargetException it) {
+                    System.out.println(it);
+                }
+                return ret;
+            }
+        });
+    }
+}
