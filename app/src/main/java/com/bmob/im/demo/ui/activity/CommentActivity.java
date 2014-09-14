@@ -239,7 +239,7 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
                 if (data.size() != 0 && data.get(data.size() - 1) != null) {
 
                     if (data.size() < Constant.NUMBERS_PER_PAGE) {
-                        ActivityUtil.show(CommentActivity.this, "已加载完所有评论~");
+                        ShowToast("已加载完所有评论~");
                         footer.setText("暂无更多评论~");
                     }
 
@@ -248,7 +248,7 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
                     setListViewHeightBasedOnChildren(commentList);
                     LogUtils.i(TAG, "refresh");
                 } else {
-                    ActivityUtil.show(CommentActivity.this, "暂无更多评论~");
+                    ShowToast("暂无更多评论~");
                     footer.setText("暂无更多评论~");
                     pageNum--;
                 }
@@ -257,7 +257,7 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
             @Override
             public void onError(int arg0, String arg1) {
                 // TODO Auto-generated method stub
-                ActivityUtil.show(CommentActivity.this, "获取评论失败。请检查网络~");
+                ShowToast("获取评论失败。请检查网络~~");
                 pageNum--;
             }
         });
