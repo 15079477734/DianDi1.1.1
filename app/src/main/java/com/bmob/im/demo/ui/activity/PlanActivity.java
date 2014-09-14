@@ -27,7 +27,6 @@ public class PlanActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         findView();
         initView();
-
     }
 
     @Override

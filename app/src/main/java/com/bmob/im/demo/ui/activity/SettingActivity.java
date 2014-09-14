@@ -196,7 +196,7 @@ public class SettingActivity extends ActivityBase implements View.OnClickListene
                         .displayImage(avatarFile.getFileUrl(), mAvatarImg,
                                 CustomApplication.getInstance().getOptions());
             } else {
-                mAvatarImg.setImageResource(R.drawable.head);
+                mAvatarImg.setImageResource(R.drawable.default_head_cry);
             }
 
             if (from.equals("other")) {

@@ -25,7 +25,7 @@ public class FileHelper {
 
     }
 
-    public boolean isExternalStorageWritable() {
+    public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             return true;

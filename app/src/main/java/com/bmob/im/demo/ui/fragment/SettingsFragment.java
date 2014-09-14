@@ -71,14 +71,12 @@ public class SettingsFragment extends BaseFragment implements OnClickListener {
 
     public void initView() {
         initTopBarForOnlyTitle("设置");
-        initData();
+        mNameText.setText(BmobUserManager.getInstance(getActivity())
+                .getCurrentUser().getNick());
         bindEvent();
     }
 
-    void initData() {
-        mNameText.setText(BmobUserManager.getInstance(getActivity())
-                .getCurrentUser().getNick());
-    }
+
 
     @Override
     void bindEvent() {

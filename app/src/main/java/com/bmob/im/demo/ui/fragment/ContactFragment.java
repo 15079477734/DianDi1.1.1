@@ -116,7 +116,6 @@ public class ContactFragment extends BaseFragment implements OnItemClickListener
     }
 
     public void initView() {
-        initData();
         bindEvent();
         initTopBarForRight("联系人", R.drawable.base_action_bar_add_bg_selector,
                 new onRightImageButtonClickListener() {
@@ -126,16 +125,12 @@ public class ContactFragment extends BaseFragment implements OnItemClickListener
                     }
                 }
         );
-
-        mFriendListView.setAdapter(mUserAdapter);
-    }
-
-    @Override
-    void initData() {
         mCharacterParser = CharacterParser.getInstance();
         mPinyinComparator = new PinyinComparator();
         mUserAdapter = new ContactAdapter(getActivity(), mFriends);
+        mFriendListView.setAdapter(mUserAdapter);
     }
+
 
     @Override
     void bindEvent() {

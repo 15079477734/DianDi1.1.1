@@ -74,9 +74,6 @@ public class PlanFragment extends BaseFragment implements AdapterView.OnItemClic
         mPlanListView = (ListView) mView.findViewById(android.R.id.list);
     }
 
-    @Override
-    void initData() {
-    }
 
     @Override
     void initView() {

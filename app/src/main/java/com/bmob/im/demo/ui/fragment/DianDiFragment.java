@@ -86,7 +86,8 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
     }
 
     public void initView() {
-        initData();
+        mListItems = new ArrayList<DianDi>();
+        pageNum = 0;
         initMenu();
         initTopBarForRight("点滴", R.drawable.ic_action_edit_selector, new onRightImageButtonClickListener() {
             @Override
@@ -102,12 +103,6 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
 
     }
 
-
-    void initData() {
-        mListItems = new ArrayList<DianDi>();
-        pageNum = 0;
-
-    }
 
     private void initXListView() {
         mListView.setOnItemClickListener(this);

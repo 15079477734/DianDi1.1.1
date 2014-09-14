@@ -19,7 +19,6 @@ import com.bmob.im.demo.CustomApplication;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.adapter.base.ViewHolder;
 import com.bmob.im.demo.util.FaceTextUtils;
-import com.bmob.im.demo.util.ImageLoadOptions;
 import com.bmob.im.demo.util.TimeUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -60,7 +59,7 @@ public class MessageRecentAdapter extends ArrayAdapter<BmobRecent> implements Fi
         if(avatar!=null&& !avatar.equals("")){
             ImageLoader.getInstance().displayImage(avatar, iv_recent_avatar, CustomApplication.getInstance().getOptions());
         }else{
-            iv_recent_avatar.setImageResource(R.drawable.head);
+            iv_recent_avatar.setImageResource(R.drawable.default_head_cry);
         }
 
         tv_recent_name.setText(item.getNick());

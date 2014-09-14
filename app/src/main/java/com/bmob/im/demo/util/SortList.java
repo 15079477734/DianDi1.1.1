@@ -13,7 +13,7 @@ import java.util.List;
  * project:DianDi1.1.0 .
  * Copyright © sulinger .All Rights Reserved.
  */
-@SuppressWarnings("no")
+@SuppressWarnings("unchecked")
 public class SortList<E>{
     public void Sort(List<E> list, final String method, final String sort){
         Collections.sort(list, new Comparator() {

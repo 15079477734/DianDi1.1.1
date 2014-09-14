@@ -121,9 +121,9 @@ public class CustomApplication extends Application {
 
     public DisplayImageOptions getOptions() {
         return new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.user_icon_default)
-                .showImageForEmptyUri(R.drawable.user_icon_default)
-                .showImageOnFail(R.drawable.user_icon_default)
+                .showImageOnLoading(R.drawable.default_head_cry)
+                .showImageForEmptyUri(R.drawable.default_head_cry)
+                .showImageOnFail(R.drawable.default_head_cry)
                 .resetViewBeforeLoading(true)
                 .cacheInMemory(true)
                 .cacheOnDisc(true)

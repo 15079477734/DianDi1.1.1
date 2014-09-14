@@ -62,16 +62,12 @@ public class RecentFragment extends BaseFragment implements OnItemClickListener,
         initTopBarForOnlyTitle("会话");
         mRecentListview.setOnItemClickListener(this);
         mRecentListview.setOnItemLongClickListener(this);
-        initData();
+        mMessageRecentAdapter = new MessageRecentAdapter(getActivity(), R.layout.item_conversation, BmobDB.create(getActivity()).queryRecents());
+        mRecentListview.setAdapter(mMessageRecentAdapter);
         bindEvent();
 
     }
 
-    @Override
-    void initData() {
-        mMessageRecentAdapter = new MessageRecentAdapter(getActivity(), R.layout.item_conversation, BmobDB.create(getActivity()).queryRecents());
-        mRecentListview.setAdapter(mMessageRecentAdapter);
-    }
 
     @Override
     void bindEvent() {

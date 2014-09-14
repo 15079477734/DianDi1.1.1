@@ -43,7 +43,6 @@ public abstract class BaseFragment extends Fragment {
 
     abstract void findView();
 
-    abstract void initData();
 
     abstract void bindEvent();
 
