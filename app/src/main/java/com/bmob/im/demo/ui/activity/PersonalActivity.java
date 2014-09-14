@@ -143,7 +143,7 @@ public class PersonalActivity extends ActivityBase implements XListView.IXListVi
         if (user.getAvatarImg() != null) {
             ImageLoader.getInstance()
                     .displayImage(user.getAvatarImg().getFileUrl(), personalIcon,
-                            CustomApplication.getInstance().getOptions(R.drawable.content_image_default),
+                            CustomApplication.getInstance().getOptions(),
                             new SimpleImageLoadingListener() {
 
                                 @Override

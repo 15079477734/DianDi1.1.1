@@ -78,7 +78,7 @@
             style="@style/Smile.TextView._Black"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="邮箱建议"/>
+            android:text="反馈建议"/>
 
         <TextView
             style="@style/Smile.TextView._Black"

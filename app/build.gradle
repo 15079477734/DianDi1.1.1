@@ -8,8 +8,8 @@ android {
         applicationId "com.bmob.im.demo"
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 2
-        versionName "1.1.0"
+        versionCode 3
+        versionName "1.1.1"
     }
     buildTypes {
         release {
@@ -20,20 +20,20 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.nineoldandroids:library:2.4.0'
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/android-support-v4.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/baidumapapi_v3_1_0.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/Bmob_IMSDK_v1.1.1beta.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/bmob_v3.1.8.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/locSDK_4.2.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/mta-sdk-1.0.0.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/open_sdk.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/ormlite-android-4.48.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/ormlite-core-4.48.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/photoview-library-1.2.2.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/radial-menu-v4.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/umeng-update-v2.4.2.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/universal-image-loader-1.9.2_sources.jar')
-    compile files('/Users/shikeim01/Desktop/studiospace/DianDi1.1.1/libs/umeng-feedback-v4.3.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/android-support-v4.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/baidumapapi_v3_1_0.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/Bmob_IMSDK_v1.1.1beta.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/bmob_v3.1.8.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/locSDK_4.2.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/mta-sdk-1.0.0.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/open_sdk.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/ormlite-android-4.48.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/ormlite-core-4.48.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/photoview-library-1.2.2.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/radial-menu-v4.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/umeng-feedback-v4.3.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/umeng-update-v2.4.2.jar')
+    compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.2/libs/universal-image-loader-1.9.2_sources.jar')
 }

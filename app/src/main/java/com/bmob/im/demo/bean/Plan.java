@@ -26,6 +26,7 @@ public class Plan implements Serializable {
     public static final String PROGRESS = "progress";
     public static final String CATEGORY_APLAN = "A计划";
     public static final String CATEGORY_BPLAN = "B计划";
+    public static final String CATEGORY_CPLAN = "C计划";
     public static final String IOP = "top";
 
 

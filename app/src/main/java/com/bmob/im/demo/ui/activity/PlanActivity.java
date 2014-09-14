@@ -82,7 +82,7 @@ public class PlanActivity extends BaseActivity {
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] TITLE = new String[]{"A计划", "B计划"};
+        private final String[] TITLE = new String[]{"A计划", "B计划","C计划"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -103,10 +103,14 @@ public class PlanActivity extends BaseActivity {
 
             if (position == 0) {
                 planFragment.setPlanCategory(Plan.CATEGORY_APLAN);
-            } else {
+            }
+            if(position==1){
                 planFragment.setPlanCategory(Plan.CATEGORY_BPLAN);
             }
-            return planFragment;
+            if(position==2)
+            {
+                planFragment.setPlanCategory(Plan.CATEGORY_CPLAN);
+            }            return planFragment;
         }
     }
 

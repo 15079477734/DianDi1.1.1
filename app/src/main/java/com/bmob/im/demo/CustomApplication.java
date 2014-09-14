@@ -19,7 +19,9 @@ import com.bmob.im.demo.util.ActivityManagerUtils;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.util.SharePreferenceUtil;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -75,25 +77,16 @@ public class CustomApplication extends Application {
     /**
      * 初始化ImageLoader
      */
-    public static void initImageLoader(Context context) {
-        File cacheDir = StorageUtils.getOwnCacheDirectory(context,
-                "bmobim/Cache");// 获取到缓存的目录地址
-        // 创建配置ImageLoader(所有的选项都是可选的,只使用那些你真的想定制)，这个可以设定在APPLACATION里面，设置为全局的配置参数
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
-                context)
-                // 线程池内加载的数量
-                .threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2)
-                .memoryCache(new WeakMemoryCache())
-                .denyCacheImageMultipleSizesInMemory()
-                .discCacheFileNameGenerator(new Md5FileNameGenerator())
-                        // 将保存的时候的URI名称用MD5 加密
-                .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .discCache(new UnlimitedDiscCache(cacheDir))// 自定义缓存路径
-                        // .defaultDisplayImageOptions(DisplayImageOptions.createSimple())
-                .writeDebugLogs() // Remove for release app
+
+    public void initImageLoader(){
+        File cacheDir = StorageUtils.getCacheDirectory(getApplicationContext());
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .memoryCache(new LruMemoryCache(5*1024*1024))
+                .memoryCacheSize(10*1024*1024)
+                .discCache(new UnlimitedDiscCache(cacheDir))
+                .discCacheFileNameGenerator(new HashCodeFileNameGenerator())
                 .build();
-        // Initialize ImageLoader with configuration.
-        ImageLoader.getInstance().init(config);// 全局初始化此配置
+        ImageLoader.getInstance().init(config);
     }
 
     public User getCurrentUser() {
@@ -114,7 +107,6 @@ public class CustomApplication extends Application {
                 .cacheOnDisc(true)
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .bitmapConfig(Bitmap.Config.RGB_565)
-                .displayer(new RoundedBitmapDisplayer(90))
                 .considerExifParams(true)
                 .build();
     }
@@ -133,6 +125,8 @@ public class CustomApplication extends Application {
                 .considerExifParams(true)
                 .build();
     }
+
+
 
     public DianDi getCurrentDianDi() {
         return currentDianDi;
@@ -166,7 +160,7 @@ public class CustomApplication extends Application {
     private void init() {
         mMediaPlayer = MediaPlayer.create(this, R.raw.notify);
         mNotificationManager = (NotificationManager) getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-        initImageLoader(getApplicationContext());
+        initImageLoader();
         // 若用户登陆过，则先从好友数据库中取出好友list存入内存中
         if (BmobUserManager.getInstance(getApplicationContext())
                 .getCurrentUser() != null) {

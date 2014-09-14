@@ -21,6 +21,11 @@
         <RadioButton
             style="@style/radiobutton_style_one"
             android:text="B计划"/>
+
+        <RadioButton
+            style="@style/radiobutton_style_one"
+            android:text="C计划"/>
+
     </RadioGroup>
 
 </LinearLayout>

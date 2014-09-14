@@ -137,7 +137,7 @@ public class PersonCenterContentAdapter extends BaseContentAdapter<DianDi> {
             viewHolder.contentImage.setVisibility(View.VISIBLE);
             ImageLoader.getInstance()
                     .displayImage(entity.getContentfigureurl().getFileUrl()==null?"":entity.getContentfigureurl().getFileUrl(), viewHolder.contentImage,
-                            CustomApplication.getInstance().getOptions(),
+                            CustomApplication.getInstance().getOptions(R.drawable.bg_pic_loading),
                             new SimpleImageLoadingListener(){
 
                                 @Override
