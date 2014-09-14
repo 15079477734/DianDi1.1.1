@@ -128,6 +128,11 @@ public class AIContentAdapter extends BaseContentAdapter<DianDi> {
 //				}
             }
         });
+        if(entity.getAuthor().isV())
+        {
+            viewHolder.userName.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
+
         viewHolder.userName.setText(entity.getAuthor().getNick());
         viewHolder.contentText.setText(entity.getContent());
         if (null == entity.getContentfigureurl()) {
@@ -300,11 +305,11 @@ public class AIContentAdapter extends BaseContentAdapter<DianDi> {
         if (qy.getContentfigureurl() != null) {
             img = qy.getContentfigureurl().getFileUrl();
         } else {
-            img = "http://www.codenow.cn/appwebsite/website/yyquan/uploads/53af6851d5d72.png";
+            img = "http://mydata123.oss-cn-hangzhou.aliyuncs.com/%E5%9B%BE%E7%89%87/ic_launcher.png";
         }
         String summary = qy.getContent();
 
-        String targetUrl = "http://yuanquan.bmob.cn";
+        String targetUrl = "http://mydata123.oss-cn-hangzhou.aliyuncs.com/%E7%82%B9%E6%BB%B4%E5%8F%91%E5%B8%83/app-debug.apk";
         TencentShareEntity entity = new TencentShareEntity(title, img, targetUrl, summary, comment);
         return entity;
     }

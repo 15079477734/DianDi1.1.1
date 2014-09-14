@@ -12,7 +12,6 @@ package com.bmob.im.demo.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,6 @@ import com.bmob.im.demo.view.xlist.XListView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -47,21 +45,17 @@ import cn.bmob.v3.listener.FindListener;
 
 
 public class DianDiFragment extends BaseFragment implements XListView.IXListViewListener, AdapterView.OnItemClickListener {
-    private final Calendar mCalendar = Calendar.getInstance();
     private ArrayList<DianDi> mListItems;
     private AIContentAdapter mAdapter;
     private XListView mListView;
     private TextView networkTips;
     private ArcMenu mArcMenu;
-    private View mView;
     private int pageNum;
-    private String lastItemTime;
-    private int hourOfDay = mCalendar.get(Calendar.HOUR_OF_DAY);
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return mView = inflater.inflate(R.layout.fragment_diandi, container, false);
+        return inflater.inflate(R.layout.fragment_diandi, container, false);
     }
 
     @Override
@@ -191,10 +185,8 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
 
     @Override
     public void onRefresh() {
-        String label = DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
         pageNum = 0;
-        lastItemTime = getCurrentTime();
+        String lastItemTime = getCurrentTime();
         loadData();
     }
 

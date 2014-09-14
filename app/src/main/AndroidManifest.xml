@@ -110,6 +110,8 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="54089af1fd98c5640f00a527" />
+
+
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="QD_umeng" />
@@ -121,6 +123,11 @@
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity android:name="com.umeng.fb.ConversationActivity"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name="com.umeng.fb.ContactActivity"
+            android:theme="@android:style/Theme.NoTitleBar"/>
 
         <service
             android:name="com.baidu.location.f"

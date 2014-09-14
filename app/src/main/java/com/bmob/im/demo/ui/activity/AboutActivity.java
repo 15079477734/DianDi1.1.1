@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bmob.im.demo.R;
+import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
@@ -84,10 +85,8 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 startActivity(Intent.createChooser(localIntent1, "分享给好友"));
                 break;
             case R.id.activity_about_feedback_layout:
-                Intent localIntent2 = new Intent("android.intent.action.SENDTO");
-                localIntent2.setData(Uri.parse("mailto:462679107.com"));
-                localIntent2.putExtra("android.intent.extra.SUBJECT", "我觉得你们的软件还有一些地方可以改进");
-                startActivity(Intent.createChooser(localIntent2, ""));
+                FeedbackAgent agent = new FeedbackAgent(AboutActivity.this);
+                agent.startFeedbackActivity();
                 break;
         }
     }
