@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 import com.bmob.im.demo.R;
+import com.bmob.im.demo.bean.Plan;
 import com.bmob.im.demo.ui.fragment.PlanFragment;
 import com.bmob.im.demo.view.HeaderLayout;
 import com.bmob.im.demo.view.PagerSlidingTabStrip;
@@ -19,7 +20,6 @@ public class PlanActivity extends BaseActivity {
     private PagerSlidingTabStrip mTabs;
     private ViewPager mPager;
     public final static int SET_NOTE = 1;
-
 
 
     @Override
@@ -100,10 +100,15 @@ public class PlanActivity extends BaseActivity {
 
         public Fragment getItem(int position) {
             PlanFragment planFragment = new PlanFragment();
-            return new PlanFragment();
+
+            if (position == 0) {
+                planFragment.setPlanCategory(Plan.CATEGORY_APLAN);
+            } else {
+                planFragment.setPlanCategory(Plan.CATEGORY_BPLAN);
+            }
+            return planFragment;
         }
     }
-
 
 
 }

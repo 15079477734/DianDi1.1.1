@@ -142,7 +142,8 @@
                 android:layout_marginLeft="80dp"
                 android:layout_marginRight="10dp"
                 android:background="@null"
-                android:hint="备注" />
+                android:hint="备注"
+                android:maxLength="14"/>
         </RelativeLayout>
 
 

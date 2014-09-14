@@ -8,6 +8,8 @@ import com.bmob.im.demo.util.SortList;
 import com.bmob.im.demo.util.util.Calculator;
 import com.bmob.im.demo.util.util.GetDate;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -102,8 +104,7 @@ public class DBUtils {
             e.printStackTrace();
         }
         sortPlans(plans);
-        SortList<Plan> sortList = new SortList<Plan>();
-        sortList.Sort(plans, "getType", "des");
+
         Log.v(TAG,""+plans.toString());
         return plans;
     }
@@ -117,6 +118,16 @@ public class DBUtils {
             e.printStackTrace();
         }
         return plan;
+    }
+    public List<Plan> query(String attributeName, String attributeValue) throws SQLException {
+        QueryBuilder<Plan, Integer> queryBuilder = planDao.queryBuilder();
+        queryBuilder.where().eq(attributeName, attributeValue);
+        PreparedQuery<Plan> preparedQuery = queryBuilder.prepare();
+        return query(preparedQuery);
+    }
+
+    public List<Plan> query(PreparedQuery<Plan> preparedQuery) throws SQLException {
+        return planDao.query(preparedQuery);
     }
 
     public void updatePlan(Plan plan) {
@@ -140,7 +151,7 @@ public class DBUtils {
         }
     }
 
-    private void sortPlans(List<Plan> plans) {
+   public void sortPlans(List<Plan> plans) {
         for (Plan plan : plans) {
 
             int m = plan.getProgress();
@@ -163,7 +174,10 @@ public class DBUtils {
             }
 
         }
+        SortList<Plan> sortList = new SortList<Plan>();
+        sortList.Sort(plans, "getType", "des");
         createPlans(plans);
+
 
 
     }

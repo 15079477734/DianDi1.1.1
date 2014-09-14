@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/arc_see"
+            android:src="@drawable/arc_write"
             android:tag="Sun" />
 
         <ImageView
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/arc_write"
+            android:src="@drawable/arc_see"
             android:tag="Place" />
 
         <ImageView

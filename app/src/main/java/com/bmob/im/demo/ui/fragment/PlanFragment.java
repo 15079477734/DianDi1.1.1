@@ -19,7 +19,9 @@ import com.bmob.im.demo.ui.activity.WritePlanActivity;
 import com.bmob.im.demo.view.dialog.DialogTips;
 import com.bmob.im.demo.view.dialog.ListDialog;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -35,10 +37,20 @@ import java.util.ArrayList;
 
 public class PlanFragment extends BaseFragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
-    DBUtils mDBUtils;
+    private DBUtils mDBUtils;
     private ListView mPlanListView;
     private View mView;
     private PlanAdapter mPlanAdapter;
+    private List<Plan> mPlans;
+    private String mPlanCategory;
+
+    public String getPlanCategory() {
+        return mPlanCategory;
+    }
+
+    public void setPlanCategory(String planCategory) {
+        mPlanCategory = planCategory;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +78,8 @@ public class PlanFragment extends BaseFragment implements AdapterView.OnItemClic
     }
 
     public void onRefresh() {
-        mPlanAdapter.setList(mDBUtils.getSortPlans());
+        loadData();
+        mPlanAdapter.setList(mPlans);
     }
 
     @Override
@@ -78,9 +91,21 @@ public class PlanFragment extends BaseFragment implements AdapterView.OnItemClic
     @Override
     void initView() {
         mDBUtils = new DBUtils(getActivity());
-        mPlanAdapter = new PlanAdapter(getActivity(), mDBUtils.getSortPlans());
+        loadData();
+        mPlanAdapter = new PlanAdapter(getActivity(), mPlans);
         mPlanListView.setAdapter(mPlanAdapter);
         bindEvent();
+    }
+
+
+    private void loadData() {
+        try {
+
+            mPlans = mDBUtils.query("category", mPlanCategory);
+            mDBUtils.sortPlans(mPlans);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
