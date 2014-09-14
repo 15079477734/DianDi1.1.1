@@ -22,7 +22,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.google.dexmaker:dexmaker-mockito:1.0'
     compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.0/libs/android-support-v4.jar')
     compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.0/libs/baidumapapi_v3_1_0.jar')
     compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1.0/libs/Bmob_IMSDK_v1.1.1beta.jar')
