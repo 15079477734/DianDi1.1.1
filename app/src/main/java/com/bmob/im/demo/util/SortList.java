@@ -34,12 +34,12 @@ public class SortList<E> {
             int ret = 0;
 
             try {
-                Method m1 = ((E) a).getClass().getMethod(method, null);
-                Method m2 = ((E) b).getClass().getMethod(method, null);
+                Method m1 = ((E)a).getClass().getMethod(method);
+                Method m2 = ((E) b).getClass().getMethod(method);
                 if (sort != null && "desc".equals(sort))//倒序
-                    ret = m2.invoke(((E) b), null).toString().compareTo(m1.invoke(((E) a), null).toString());
+                    ret = m2.invoke(((E) b)).toString().compareTo(m1.invoke(((E) a)).toString());
                 else//正序
-                    ret = m1.invoke(((E) a), null).toString().compareTo(m2.invoke(((E) b), null).toString());
+                    ret = m1.invoke(((E) a)).toString().compareTo(m2.invoke(((E) b)).toString());
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
