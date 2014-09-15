@@ -169,7 +169,6 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
                             }
                     );
         }
-
         love.setText(mDianDi.getLove() + "");
         if (mDianDi.getMyLove()) {
             love.setTextColor(Color.parseColor("#D95555"));
@@ -189,13 +188,12 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
         if (null != avatar) {
             ImageLoader.getInstance()
                     .displayImage(avatar.getFileUrl(), userLogo,
-                            CustomApplication.getInstance().getOptions(R.drawable.content_image_default),
+                            CustomApplication.getInstance().getOptions(),
                             new SimpleImageLoadingListener() {
 
                                 @Override
                                 public void onLoadingComplete(String imageUri, View view,
                                                               Bitmap loadedImage) {
-                                    // TODO Auto-generated method stub
                                     super.onLoadingComplete(imageUri, view, loadedImage);
                                     LogUtils.i(TAG, "load personal icon completed.");
                                 }
@@ -206,10 +204,8 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
     }
 
     protected void bindEvent() {
-        // TODO Auto-generated method stub
         footer.setOnClickListener(this);
         commentCommit.setOnClickListener(this);
-
         userLogo.setOnClickListener(this);
         myFav.setOnClickListener(this);
         love.setOnClickListener(this);

@@ -15,6 +15,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.mapapi.SDKInitializer;
 import com.bmob.im.demo.bean.DianDi;
 import com.bmob.im.demo.bean.User;
+import com.bmob.im.demo.db.ACache;
 import com.bmob.im.demo.util.ActivityManagerUtils;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.util.SharePreferenceUtil;
@@ -68,6 +69,7 @@ public class CustomApplication extends Application {
     private DianDi currentDianDi;
     private String longtitude = "";
     private String latitude = "";
+    private ACache mACache;
     private Map<String, BmobChatUser> contactList = new HashMap<String, BmobChatUser>();
 
     public static CustomApplication getInstance() {
@@ -78,15 +80,24 @@ public class CustomApplication extends Application {
      * 初始化ImageLoader
      */
 
-    public void initImageLoader(){
+    public void initImageLoader() {
         File cacheDir = StorageUtils.getCacheDirectory(getApplicationContext());
+        //    File cacheDir= new File(getCacheDir(), "ACache");
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-                .memoryCache(new LruMemoryCache(5*1024*1024))
-                .memoryCacheSize(10*1024*1024)
+                .memoryCache(new LruMemoryCache(5 * 1024 * 1024))
+                .memoryCacheSize(10 * 1024 * 1024)
                 .discCache(new UnlimitedDiscCache(cacheDir))
                 .discCacheFileNameGenerator(new HashCodeFileNameGenerator())
                 .build();
         ImageLoader.getInstance().init(config);
+    }
+
+    public ACache getCache() {
+        if (mACache == null) {
+            return ACache.get(getApplicationContext());
+        } else {
+            return mACache;
+        }
     }
 
     public User getCurrentUser() {
@@ -125,7 +136,6 @@ public class CustomApplication extends Application {
                 .considerExifParams(true)
                 .build();
     }
-
 
 
     public DianDi getCurrentDianDi() {

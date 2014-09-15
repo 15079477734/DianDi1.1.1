@@ -136,6 +136,14 @@ abstract class BaseActivity extends FragmentActivity implements SharedPreference
         });
     }
 
+    public void LogE(Object object) {
+        Log.e(TAG, object.toString());
+    }
+
+    public void LogE(String str) {
+        Log.e(TAG, str);
+    }
+
 
     public void ShowLog(String msg) {
         BmobLog.i(msg);

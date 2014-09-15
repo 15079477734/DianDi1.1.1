@@ -52,6 +52,7 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
     private ArcMenu mArcMenu;
     private int pageNum;
 
+    private final static String DIANDIAN_LIST = "diandi_list_";
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,20 +83,31 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
     public void initView() {
         mListItems = new ArrayList<DianDi>();
         pageNum = 0;
-        initMenu();
         initTopBarForRight("点滴", R.drawable.ic_action_edit_selector, new onRightImageButtonClickListener() {
             @Override
             public void onClick() {
                 startAnimActivity(NewDiandiActivity.class);
             }
         });
+        if (CustomApplication.getInstance().getCache().getAsObject(DIANDIAN_LIST) != null) {
+            mListItems = (ArrayList<DianDi>) CustomApplication.getInstance().getCache().getAsObject(DIANDIAN_LIST);
+            networkTips.setVisibility(View.GONE);
+        }
         initXListView();
         bindEvent();
     }
 
-    private void initMenu() {
+    public void onDestroy()
+    {
+        super.onDestroy();
+        if(mListItems!=null)
+        {
+            CustomApplication.getInstance().getCache().put(DIANDIAN_LIST,mListItems);
+        }
 
     }
+
+
 
 
     private void initXListView() {
@@ -150,8 +162,10 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
         query.include("author");
         query.findObjects(getActivity(), new FindListener<DianDi>() {
 
+
             @Override
             public void onSuccess(List<DianDi> list) {
+                ArrayList<DianDi>cacheDian=new ArrayList<DianDi>();
                 LogUtils.i(TAG, "find success." + list.size());
                 if (list.size() != 0 && list.get(list.size() - 1) != null) {
                     mListItems.clear();

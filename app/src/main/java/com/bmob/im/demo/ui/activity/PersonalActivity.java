@@ -45,6 +45,8 @@ public class PersonalActivity extends ActivityBase implements XListView.IXListVi
     private User mUser;
     private int pageNum;
 
+    private final static String PERSON_LIST = "person_list";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,21 +62,27 @@ public class PersonalActivity extends ActivityBase implements XListView.IXListVi
         personalSign = (TextView) findViewById(R.id.personl_signature);
         goSettings = (ImageView) findViewById(R.id.go_settings);
         personalTitle = (TextView) findViewById(R.id.personl_title);
-
         mListView = (XListView) findViewById(R.id.pull_refresh_list_personal);
     }
 
     void initView() {
-        initData();
+        mDianDis = new ArrayList<DianDi>();
+        mUser = CustomApplication.getInstance().getCurrentDianDi().getAuthor();
+        updatePersonalInfo(mUser);
         initTopBarForLeft("个人中心");
+        if (CustomApplication.getInstance().getCache().getAsObject(PERSON_LIST + mUser.getObjectId()) != null) {
+            mDianDis = (ArrayList<DianDi>) CustomApplication.getInstance().getCache().getAsObject(PERSON_LIST + mUser.getObjectId());
+        }
         initMyPublish();
         initXListView();
         bindEvent();
     }
 
-    void initData() {
-        mUser = CustomApplication.getInstance().getCurrentDianDi().getAuthor();
-        updatePersonalInfo(mUser);
+    public void onDestroy() {
+        super.onDestroy();
+        if (mDianDis != null) {
+            CustomApplication.getInstance().getCache().put(PERSON_LIST + mUser.getObjectId(), mDianDis);
+        }
     }
 
     private void initXListView() {
@@ -101,7 +109,6 @@ public class PersonalActivity extends ActivityBase implements XListView.IXListVi
                 personalTitle.setText("他发表过的");
             }
         }
-        mDianDis = new ArrayList<DianDi>();
     }
 
     @Override
@@ -114,8 +121,6 @@ public class PersonalActivity extends ActivityBase implements XListView.IXListVi
 
     @Override
     public void onRefresh() {
-        String label = DateUtils.formatDateTime(this, System.currentTimeMillis(),
-                DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
         pageNum = 0;
         loadData();
     }
@@ -180,10 +185,7 @@ public class PersonalActivity extends ActivityBase implements XListView.IXListVi
     }
 
     protected void loadData() {
-        getPublishion();
-    }
 
-    private void getPublishion() {
         BmobQuery<DianDi> query = new BmobQuery<DianDi>();
         query.setLimit(Constant.NUMBERS_PER_PAGE);
         query.setSkip(Constant.NUMBERS_PER_PAGE * (pageNum++));
@@ -192,33 +194,37 @@ public class PersonalActivity extends ActivityBase implements XListView.IXListVi
         query.addWhereEqualTo("author", mUser);
         query.findObjects(this, new FindListener<DianDi>() {
 
-            @Override
-            public void onSuccess(List<DianDi> data) {
-                // TODO Auto-generated method stub
-                if (data.size() != 0 && data.get(data.size() - 1) != null) {
-                    mDianDis.clear();
+                    @Override
+                    public void onSuccess(List<DianDi> data) {
 
-                    if (data.size() < Constant.NUMBERS_PER_PAGE) {
-                        ShowToast("已加载完所有数据~");
+                        if (data.size() != 0 && data.get(data.size() - 1) != null) {
+                              mDianDis.clear();
+                            if (data.size() < Constant.NUMBERS_PER_PAGE) {
+                                ShowToast("已加载完所有数据~");
+                            }
+
+                            mDianDis.addAll(data);
+                            mAdapter.notifyDataSetChanged();
+
+                        } else
+
+                        {
+                            ShowToast("暂无更多数据~");
+                            pageNum--;
+                        }
+
+                        refreshPull();
                     }
 
-                    mDianDis.addAll(data);
-                    mAdapter.notifyDataSetChanged();
-                } else {
-                    ShowToast("暂无更多数据~");
-                    pageNum--;
+                    @Override
+                    public void onError(int arg0, String msg) {
+                        // TODO Auto-generated method stub
+                        LogUtils.i(TAG, "find failed." + msg);
+                        pageNum--;
+                        refreshPull();
+                    }
                 }
-                refreshPull();
-            }
-
-            @Override
-            public void onError(int arg0, String msg) {
-                // TODO Auto-generated method stub
-                LogUtils.i(TAG, "find failed." + msg);
-                pageNum--;
-                refreshPull();
-            }
-        });
+        );
     }
 
     @Override
@@ -261,7 +267,7 @@ public class PersonalActivity extends ActivityBase implements XListView.IXListVi
                 case EDIT_USER:
                     getCurrentUserInfo();
                     pageNum = 0;
-                    getPublishion();
+                    loadData();
                     break;
 
                 default:

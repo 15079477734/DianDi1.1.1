@@ -12,10 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bmob.im.demo.CustomApplication;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.adapter.AIContentAdapter;
 import com.bmob.im.demo.adapter.base.BaseContentAdapter;
 import com.bmob.im.demo.bean.DianDi;
+import com.bmob.im.demo.bean.Plan;
 import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.config.Constant;
 import com.bmob.im.demo.ui.fragment.BaseFragment;
@@ -41,8 +43,9 @@ public class FavoriteActivity extends BaseActivity implements XListView.IXListVi
     private ArrayList<DianDi> mListItems;
     private BaseContentAdapter<DianDi> mAdapter;
     private int pageNum;
-    private String lastItemTime;
     private ProgressBar progressbar;
+    private User mUser;
+    private final String FAVORITE = "favorite_";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,13 @@ public class FavoriteActivity extends BaseActivity implements XListView.IXListVi
         onRefresh();
     }
 
+    public void onDestroy() {
+        super.onDestroy();
+        if (mListItems != null) {
+            CustomApplication.getInstance().getCache().put(FAVORITE + mUser.getObjectId(), mListItems);
+        }
+    }
+
     @Override
     void findView() {
         setContentView(R.layout.activity_favorite);
@@ -69,6 +79,7 @@ public class FavoriteActivity extends BaseActivity implements XListView.IXListVi
     @Override
     void initView() {
         pageNum = 0;
+        mUser = BmobUser.getCurrentUser(mContext, User.class);
         initTopBarForBoth("点滴", R.drawable.ic_action_edit_selector, new HeaderLayout.onRightImageButtonClickListener() {
             @Override
             public void onClick() {
@@ -76,6 +87,9 @@ public class FavoriteActivity extends BaseActivity implements XListView.IXListVi
             }
         });
         mListItems = new ArrayList<DianDi>();
+        if (CustomApplication.getInstance().getCache().getAsObject(FAVORITE + mUser.getObjectId()) != null) {
+            mListItems = (ArrayList<DianDi>) CustomApplication.getInstance().getCache().getAsObject(FAVORITE + mUser.getObjectId());
+        }
         initXListView();
         bindEvent();
     }
@@ -107,9 +121,9 @@ public class FavoriteActivity extends BaseActivity implements XListView.IXListVi
 
     public void loadData() {
         progressbar.setVisibility(View.VISIBLE);
-        User user = BmobUser.getCurrentUser(mContext, User.class);
+
         BmobQuery<DianDi> query = new BmobQuery<DianDi>();
-        query.addWhereRelatedTo("favorite", new BmobPointer(user));
+        query.addWhereRelatedTo("favorite", new BmobPointer(mUser));
         query.order("-createdAt");
         query.setLimit(Constant.NUMBERS_PER_PAGE);
         BmobDate date = new BmobDate(new Date(System.currentTimeMillis()));
@@ -120,7 +134,6 @@ public class FavoriteActivity extends BaseActivity implements XListView.IXListVi
 
             @Override
             public void onSuccess(List<DianDi> list) {
-                // TODO Auto-generated method stub
                 if (list.size() != 0 && list.get(list.size() - 1) != null) {
                     {
                         mListItems.clear();
@@ -159,9 +172,7 @@ public class FavoriteActivity extends BaseActivity implements XListView.IXListVi
 
     @Override
     public void onRefresh() {
-
         pageNum = 0;
-        lastItemTime = getCurrentTime();
         loadData();
 
 

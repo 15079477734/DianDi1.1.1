@@ -33,6 +33,24 @@ public class DianDi extends BmobObject implements Serializable {
     private int share;
     private int comment;
     private boolean isPass;
+
+    @Override
+    public String toString() {
+        return "DianDi{" +
+                "author=" + author +
+                ", content='" + content + '\'' +
+                ", Contentfigureurl=" + Contentfigureurl +
+                ", love=" + love +
+                ", hate=" + hate +
+                ", share=" + share +
+                ", comment=" + comment +
+                ", isPass=" + isPass +
+                ", myFav=" + myFav +
+                ", myLove=" + myLove +
+                ", relation=" + relation +
+                '}';
+    }
+
     private boolean myFav;//收藏
     private boolean myLove;//赞
     private BmobRelation relation;
@@ -125,13 +143,6 @@ public class DianDi extends BmobObject implements Serializable {
         this.myLove = myLove;
     }
 
-    @Override
-    public String toString() {
-        return "QiangYu [author=" + author + ", content=" + content
-                + ", Contentfigureurl=" + Contentfigureurl + ", love=" + love
-                + ", hate=" + hate + ", share=" + share + ", comment="
-                + comment + ", isPass=" + isPass + ", myFav=" + myFav
-                + ", myLove=" + myLove + ", relation=" + relation + "]";
-    }
+
 
 }
