@@ -134,10 +134,10 @@ public class PlanFragment extends BaseFragment implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         final Plan plan = mPlanAdapter.getE(position);
-
         final ArrayList<String> list = new ArrayList<String>();
         list.add("设置进度");
         list.add("修改计划");
+        list.add("标记完成");
         final ListDialog listDialog = new ListDialog(getActivity(), "操作", list);
         listDialog.show();
         listDialog.setOnListItemClickListener(new AdapterView.OnItemClickListener() {
@@ -153,6 +153,12 @@ public class PlanFragment extends BaseFragment implements AdapterView.OnItemClic
                     Intent intent = new Intent(getActivity(), WritePlanActivity.class);
                     intent.putExtra(Plan.PLAN_ID, plan.get_id());
                     startActivity(intent);
+                    listDialog.dismiss();
+                }
+                if (i == 2) {
+                    plan.setProgress(100);
+                    mDBUtils.createPlan(plan);
+                    onRefresh();
                     listDialog.dismiss();
                 }
             }

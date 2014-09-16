@@ -32,7 +32,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:drawablePadding="10dp"
-            android:text="v1.1.0"
+            android:text="v1.1.2"
             android:textColor="@color/red"
             android:drawableRight="@drawable/register_bottom_arrow"/>
     </RelativeLayout>

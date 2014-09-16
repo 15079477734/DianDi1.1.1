@@ -55,12 +55,11 @@ public class PersonCenterContentAdapter extends BaseContentAdapter<DianDi> {
     public PersonCenterContentAdapter(Context context, List<DianDi> list) {
         super(context, list);
         mContext=context;
-        // TODO Auto-generated constructor stub
     }
     public PersonCenterContentAdapter(Activity activity, List<DianDi> list) {
         super(activity, list);
         mActivity=activity;
-        // TODO Auto-generated constructor stub
+        mContext=activity;
     }
 
 

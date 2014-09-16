@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <include
         android:id="@+id/common_actionbar"
-        layout="@layout/include_action_bar" />
+        layout="@layout/include_action_bar"/>
+
 
     <ScrollView
         android:layout_below="@id/common_actionbar"
@@ -23,12 +24,12 @@
                 android:id="@+id/comment_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                layout="@layout/ai_item" />
+                layout="@layout/ai_item"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#dddddd" />
+                android:background="#dddddd"/>
 
             <ListView
                 android:id="@+id/comment_list"
@@ -43,7 +44,7 @@
                 android:padding="12dip"
                 android:gravity="center"
                 style="@style/TextTheme.tipstheme_second"
-                android:textColor="@drawable/selector_load_more" />
+                android:textColor="@drawable/selector_load_more"/>
         </LinearLayout>
     </ScrollView>
 
@@ -69,7 +70,7 @@
             android:layout_marginLeft="4dp"
             android:paddingLeft="4dip">
 
-            <requestFocus />
+            <requestFocus/>
         </EditText>
 
         <Button
@@ -87,6 +88,15 @@
             android:padding="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/selector_logout" />
+            android:background="@drawable/selector_logout"/>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/mLyout"
+        android:layout_below="@id/common_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="true"
+        >
+    </RelativeLayout>
 </RelativeLayout>

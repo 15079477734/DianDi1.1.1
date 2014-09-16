@@ -1,5 +1,6 @@
 package com.bmob.im.demo.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bmob.im.demo.CustomApplication;
 import com.bmob.im.demo.R;
@@ -21,13 +23,17 @@ import com.bmob.im.demo.db.DatabaseUtil;
 import com.bmob.im.demo.sns.TencentShare;
 import com.bmob.im.demo.sns.TencentShareEntity;
 import com.bmob.im.demo.ui.activity.CommentActivity;
+import com.bmob.im.demo.ui.activity.ImageBrowserActivity;
 import com.bmob.im.demo.ui.activity.LoginActivity;
 import com.bmob.im.demo.ui.activity.PersonalActivity;
 import com.bmob.im.demo.util.ActivityUtil;
 import com.bmob.im.demo.util.LogUtils;
+import com.bmob.im.demo.view.gitonway.lee.niftynotification.Effects;
+import com.bmob.im.demo.view.gitonway.lee.niftynotification.NiftyNotificationView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -50,10 +56,12 @@ public class AIContentAdapter extends BaseContentAdapter<DianDi> {
     public static final String TAG = "AIContentAdapter";
     public static final int SAVE_FAVOURITE = 2;
 
+
+
     public AIContentAdapter(Context context, List<DianDi> list) {
         super(context, list);
-        // TODO Auto-generated constructor stub
     }
+
 
     @Override
     public View getConvertView(int position, View convertView, ViewGroup parent) {
@@ -128,8 +136,7 @@ public class AIContentAdapter extends BaseContentAdapter<DianDi> {
 //				}
             }
         });
-        if(entity.getAuthor().isV())
-        {
+        if (entity.getAuthor().isV()) {
             viewHolder.userName.setTextColor(mContext.getResources().getColor(R.color.red));
         }
 
@@ -143,7 +150,6 @@ public class AIContentAdapter extends BaseContentAdapter<DianDi> {
                     .displayImage(entity.getContentfigureurl().getFileUrl() == null ? "" : entity.getContentfigureurl().getFileUrl(), viewHolder.contentImage,
                             CustomApplication.getInstance().getOptions(R.drawable.bg_pic_loading),
                             new SimpleImageLoadingListener() {
-
                                 @Override
                                 public void onLoadingComplete(String imageUri, View view,
                                                               Bitmap loadedImage) {
@@ -158,6 +164,17 @@ public class AIContentAdapter extends BaseContentAdapter<DianDi> {
 
                             }
                     );
+            viewHolder.contentImage.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, ImageBrowserActivity.class);
+                    ArrayList<String> photos = new ArrayList<String>();
+                    photos.add(entity.getContentfigureurl().getFileUrl());
+                    intent.putStringArrayListExtra("photos", photos);
+                    intent.putExtra("position", 0);
+                    mContext.startActivity(intent);
+                }
+            });
         }
         viewHolder.love.setText(entity.getLove() + "");
         LogUtils.i("love", entity.getMyLove() + "..");
@@ -253,7 +270,8 @@ public class AIContentAdapter extends BaseContentAdapter<DianDi> {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 //share to sociaty
-                ActivityUtil.show(mContext, "分享给好友看哦~");
+
+                Toast.makeText(mContext,"分享给好友看",Toast.LENGTH_LONG).show();
                 final TencentShare tencentShare = new TencentShare(CustomApplication.getInstance().getTopActivity(), getQQShareEntity(entity));
                 tencentShare.shareToQQ();
             }

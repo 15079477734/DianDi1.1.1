@@ -96,18 +96,15 @@ public class ChatAdapter extends BaseListAdapter<BmobMsg> {
         int type = message.getMsgType();
         if(type==BmobConfig.TYPE_IMAGE){//图片类型
             return getItemViewType(position) == TYPE_RECEIVER_IMAGE ?
-                    mInflater.inflate(R.layout.item_chat_received_image, null)
-                    :
+                    mInflater.inflate(R.layout.item_chat_received_image, null):
                     mInflater.inflate(R.layout.item_chat_sent_image, null);
         }else if(type==BmobConfig.TYPE_LOCATION){//位置类型
             return getItemViewType(position) == TYPE_RECEIVER_LOCATION ?
-                    mInflater.inflate(R.layout.item_chat_received_location, null)
-                    :
+                    mInflater.inflate(R.layout.item_chat_received_location, null):
                     mInflater.inflate(R.layout.item_chat_sent_location, null);
         }else if(type==BmobConfig.TYPE_VOICE){//语音类型
             return getItemViewType(position) == TYPE_RECEIVER_VOICE ?
-                    mInflater.inflate(R.layout.item_chat_received_voice, null)
-                    :
+                    mInflater.inflate(R.layout.item_chat_received_voice, null):
                     mInflater.inflate(R.layout.item_chat_sent_voice, null);
         }else{//剩下默认的都是文本
             return getItemViewType(position) == TYPE_RECEIVER_TXT ?
@@ -230,7 +227,7 @@ public class ChatAdapter extends BaseListAdapter<BmobMsg> {
 
                         @Override
                         public void onClick(View arg0) {
-                            // TODO Auto-generated method stub
+
                             Intent intent =new Intent(mContext,ImageBrowserActivity.class);
                             ArrayList<String> photos = new ArrayList<String>();
                             photos.add(getImageUrl(item));

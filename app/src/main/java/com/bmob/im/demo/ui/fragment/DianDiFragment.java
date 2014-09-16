@@ -32,6 +32,7 @@ import com.bmob.im.demo.ui.activity.WritePlanActivity;
 import com.bmob.im.demo.util.LogUtils;
 import com.bmob.im.demo.view.ArcMenu;
 import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
+import com.bmob.im.demo.view.gitonway.lee.niftynotification.Effects;
 import com.bmob.im.demo.view.xlist.XListView;
 
 import java.text.SimpleDateFormat;
@@ -51,6 +52,7 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
     private TextView networkTips;
     private ArcMenu mArcMenu;
     private int pageNum;
+
 
     private final static String DIANDIAN_LIST = "diandi_list_";
 

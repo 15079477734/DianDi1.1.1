@@ -31,11 +31,14 @@ import com.bmob.im.demo.sns.TencentShare;
 import com.bmob.im.demo.sns.TencentShareEntity;
 import com.bmob.im.demo.util.ActivityUtil;
 import com.bmob.im.demo.util.LogUtils;
+import com.bmob.im.demo.view.gitonway.lee.niftynotification.Effects;
+import com.bmob.im.demo.view.gitonway.lee.niftynotification.NiftyNotificationView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Handler;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
@@ -168,6 +171,17 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
 
                             }
                     );
+            commentItemImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, ImageBrowserActivity.class);
+                    ArrayList<String> photos = new ArrayList<String>();
+                    photos.add(mDianDi.getContentfigureurl().getFileUrl());
+                    intent.putStringArrayListExtra("photos", photos);
+                    intent.putExtra("position", 0);
+                    mContext.startActivity(intent);
+                }
+            });
         }
         love.setText(mDianDi.getLove() + "");
         if (mDianDi.getMyLove()) {
@@ -498,7 +512,7 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
 
             @Override
             public void onFailure(int arg0, String arg1) {
-                // TODO Auto-generated method stub
+
             }
         });
     }
@@ -512,21 +526,21 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
 
             @Override
             public void onSuccess() {
-                // TODO Auto-generated method stub
+
                 ActivityUtil.show(CommentActivity.this, "点踩成功~");
             }
 
             @Override
             public void onFailure(int arg0, String arg1) {
-                // TODO Auto-generated method stub
+
 
             }
         });
     }
 
     private void onClickShare() {
-        // TODO Auto-generated method stub
-        ActivityUtil.show(CommentActivity.this, "share to ...");
+
+        NiftyNotificationView.build(this, "分享给好友看哦", Effects.scale, R.id.mLyout) .show();
         final TencentShare tencentShare = new TencentShare(CustomApplication.getInstance().getTopActivity(), getQQShareEntity(mDianDi));
         tencentShare.shareToQQ();
     }

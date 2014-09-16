@@ -8,6 +8,16 @@
         android:id="@+id/common_actionbar"
         layout="@layout/include_action_bar"/>
 
+    <RelativeLayout
+        android:id="@+id/mLyout"
+        android:layout_below="@id/common_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="true"
+        >
+
+    </RelativeLayout>
+
 
     <com.bmob.im.demo.view.xlist.XListView
         android:id="@+id/fragment_diandi_list"
@@ -38,19 +48,19 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         zhy:position="left_bottom"
-        zhy:radius="120dp" >
+        zhy:radius="120dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/composer_button" >
+            android:background="@drawable/composer_button">
 
             <ImageView
                 android:id="@+id/id_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/composer_icn_plus" />
+                android:src="@drawable/composer_icn_plus"/>
         </RelativeLayout>
 
 
@@ -60,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/arc_write"
-            android:tag="Sun" />
+            android:tag="Sun"/>
 
         <ImageView
             android:id="@+id/fragment_diandi_seeplan_img"
@@ -68,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/arc_see"
-            android:tag="Place" />
+            android:tag="Place"/>
 
         <ImageView
             android:id="@+id/fragment_diandi_love_img"
@@ -76,6 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/arc_love"
-            android:tag="Sleep" />
+            android:tag="Sleep"/>
     </com.bmob.im.demo.view.ArcMenu>
+
+
 </RelativeLayout>

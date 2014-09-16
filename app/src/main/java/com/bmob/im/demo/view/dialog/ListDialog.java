@@ -26,7 +26,6 @@ public class ListDialog extends Dialog {
     private Context mContext;
     private String mTitle;
     private ArrayList<String> mListContent;
-    private OnItemClickListener mOnItemClickListener;
 
     public ListDialog(Context context) {
         super(context);
