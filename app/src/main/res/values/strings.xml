@@ -35,6 +35,7 @@
     <string name="set_check_update">检查更新</string>
     <string name="set_share">一键分享</string>
     <string name="set_connect_us">联系我们</string>
+    <string name="link">下载地址</string>
     <string name="set_msgreceiver">消息设置</string>
     <string name="set_blacklist">黑名单</string>
     <string name="set_voice">声音</string>
@@ -93,8 +94,8 @@
     <string name="title_activity_radial_progress">RadialProgressActivity</string>
     <string name="title_activity_favorite">FavoriteActivity</string>
 
-
     <eat-comment />
+
     <string name="umeng_fb_powered_by">Powered by</string>
     <string name="umeng_fb_back">返回</string>
     <string name="umeng_fb_contact_info">联系方式</string>
@@ -109,4 +110,6 @@
     <string name="umeng_fb_reply_date_default">2013年3月12日 13:24:00</string>
     <string name="umeng_fb_send">发送</string>
     <string name="umeng_fb_title">用户反馈</string>
+    <string name="title_activity_link_acitivity">LinkAcitivity</string>
+
 </resources>

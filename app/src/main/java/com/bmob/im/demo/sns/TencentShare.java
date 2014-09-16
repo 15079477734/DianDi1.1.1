@@ -81,9 +81,7 @@ public class TencentShare implements TencentShareConstants {
      * @return
      */
     private String getAppId() {
-        String appId= Config.appId;
-
-        return appId.substring(3);
+        return Config.appId= Config.appId;
     }
 
     /**

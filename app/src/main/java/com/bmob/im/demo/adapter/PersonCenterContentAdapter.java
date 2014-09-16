@@ -19,6 +19,7 @@ import com.bmob.im.demo.bean.DianDi;
 import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.config.Constant;
 import com.bmob.im.demo.sns.TencentShare;
+import com.bmob.im.demo.sns.TencentShareConstants;
 import com.bmob.im.demo.sns.TencentShareEntity;
 import com.bmob.im.demo.ui.activity.CommentActivity;
 import com.bmob.im.demo.ui.activity.LoginActivity;
@@ -264,7 +265,7 @@ public class PersonCenterContentAdapter extends BaseContentAdapter<DianDi> {
         if(qy.getContentfigureurl()!=null){
             img = qy.getContentfigureurl().getFileUrl();
         }else{
-            img = "http://www.codenow.cn/appwebsite/website/yyquan/uploads/53af6851d5d72.png";
+            img = TencentShareConstants.DEFAULT_IMG_URL;
         }
         String summary=qy.getContent();
 

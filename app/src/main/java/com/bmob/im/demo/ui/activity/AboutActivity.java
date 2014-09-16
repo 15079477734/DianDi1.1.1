@@ -18,7 +18,7 @@ import com.umeng.update.UpdateStatus;
 
 public class AboutActivity extends BaseActivity implements View.OnClickListener {
 
-    private RelativeLayout mCheckUpdateLayout, mShareLayout, mFeedBackLayout;
+    private RelativeLayout mCheckUpdateLayout, mShareLayout, mFeedBackLayout, mLinkLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         mCheckUpdateLayout = (RelativeLayout) findViewById(R.id.activity_about_check_update_layout);
         mShareLayout = (RelativeLayout) findViewById(R.id.activity_about_share_layout);
         mFeedBackLayout = (RelativeLayout) findViewById(R.id.activity_about_feedback_layout);
+        mLinkLayout = (RelativeLayout) findViewById(R.id.activity_about_link_layout);
     }
 
     void initView() {
@@ -47,6 +48,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         mCheckUpdateLayout.setOnClickListener(this);
         mShareLayout.setOnClickListener(this);
         mFeedBackLayout.setOnClickListener(this);
+        mLinkLayout.setOnClickListener(this);
     }
 
     @Override
@@ -87,6 +89,9 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
             case R.id.activity_about_feedback_layout:
                 FeedbackAgent agent = new FeedbackAgent(AboutActivity.this);
                 agent.startFeedbackActivity();
+                break;
+            case R.id.activity_about_link_layout:
+                startAnimActivity(LinkAcitivity.class);
                 break;
         }
     }

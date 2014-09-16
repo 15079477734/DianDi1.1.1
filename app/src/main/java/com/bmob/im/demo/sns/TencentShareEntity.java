@@ -34,8 +34,8 @@ public class TencentShareEntity {
      */
     public TencentShareEntity(String title, String imgUrl, String targetUrl, String summary, String comment) {
         this.title=title;
-        this.imgUrl=imgUrl;
-        this.targetUrl=targetUrl;
+        this.imgUrl=TencentShareConstants.IMG_URL;
+        this.targetUrl=TencentShareConstants.TARGET_URL;
         this.summary=summary;
         this.comment=comment;
     }

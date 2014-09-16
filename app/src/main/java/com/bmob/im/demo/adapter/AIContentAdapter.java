@@ -21,6 +21,7 @@ import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.config.Constant;
 import com.bmob.im.demo.db.DatabaseUtil;
 import com.bmob.im.demo.sns.TencentShare;
+import com.bmob.im.demo.sns.TencentShareConstants;
 import com.bmob.im.demo.sns.TencentShareEntity;
 import com.bmob.im.demo.ui.activity.CommentActivity;
 import com.bmob.im.demo.ui.activity.ImageBrowserActivity;
@@ -323,7 +324,7 @@ public class AIContentAdapter extends BaseContentAdapter<DianDi> {
         if (qy.getContentfigureurl() != null) {
             img = qy.getContentfigureurl().getFileUrl();
         } else {
-            img = "http://mydata123.oss-cn-hangzhou.aliyuncs.com/%E5%9B%BE%E7%89%87/ic_launcher.png";
+            img = TencentShareConstants.DEFAULT_IMG_URL;
         }
         String summary = qy.getContent();
 

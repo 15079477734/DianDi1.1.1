@@ -28,6 +28,7 @@ import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.config.Constant;
 import com.bmob.im.demo.db.DatabaseUtil;
 import com.bmob.im.demo.sns.TencentShare;
+import com.bmob.im.demo.sns.TencentShareConstants;
 import com.bmob.im.demo.sns.TencentShareEntity;
 import com.bmob.im.demo.util.ActivityUtil;
 import com.bmob.im.demo.util.LogUtils;
@@ -552,7 +553,7 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
         if (qy.getContentfigureurl() != null) {
             img = qy.getContentfigureurl().getFileUrl();
         } else {
-            img = "http://www.codenow.cn/appwebsite/website/yyquan/uploads/53af6851d5d72.png";
+            img = TencentShareConstants.DEFAULT_IMG_URL;
         }
         String summary = qy.getContent();
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bmob.im.demo">
+    package="com.bmob.im.demo" >
     >
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,8 +21,6 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -44,10 +42,10 @@
         android:allowBackup="true"
         android:icon="@drawable/icc_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".ui.activity.SplashActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -88,14 +86,14 @@
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true">
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent100548485" />
+                <data android:scheme="KaOlDCXnNFPylqkw" />
             </intent-filter>
         </activity>
         <!-- openqq end -->
@@ -106,8 +104,6 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="54089af1fd98c5640f00a527" />
-
-
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="QD_umeng" />
@@ -119,7 +115,6 @@
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
         <activity
             android:name="com.umeng.fb.ConversationActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
@@ -130,7 +125,7 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote">
+            android:process=":remote" >
             <intent-filter>
                 <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
@@ -144,20 +139,20 @@
             android:exported="true"
             android:label="PushService"
             android:permission="cn.bmob.permission.push"
-            android:process="cn.bmob.push">
+            android:process="cn.bmob.push" >
             <intent-filter>
                 <action android:name="cn.bmob.push.lib.service.PushService" />
             </intent-filter>
         </service>
 
-        <receiver android:name="cn.bmob.push.PushReceiver">
-            <intent-filter android:priority="2147483647"> <!-- 优先级加最高 -->
+        <receiver android:name="cn.bmob.push.PushReceiver" >
+            <intent-filter android:priority="2147483647" > <!-- 优先级加最高 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".MyMessageReceiver">
+        <receiver android:name=".MyMessageReceiver" >
             <intent-filter>
                 <action android:name="cn.bmob.push.action.MESSAGE" />
             </intent-filter>
@@ -168,14 +163,18 @@
             android:label="@string/title_activity_my" />
         <activity
             android:name=".ui.activity.PlanActivity"
-            android:label="@string/title_activity_plan"></activity>
+            android:label="@string/title_activity_plan" />
         <activity android:name=".ui.activity.WritePlanActivity" />
         <activity
             android:name=".ui.activity.RadialProgressActivity"
             android:label="@string/title_activity_radial_progress" />
         <activity
             android:name=".ui.activity.FavoriteActivity"
-            android:label="@string/title_activity_favorite"></activity>
+            android:label="@string/title_activity_favorite" />
+        <activity
+            android:name=".ui.activity.LinkAcitivity"
+            android:label="@string/title_activity_link_acitivity" >
+        </activity>
     </application>
 
     <supports-screens
